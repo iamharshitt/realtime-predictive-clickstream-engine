@@ -16,11 +16,9 @@ PRODUCTS = {
 }
 ACTIONS = ["view", "add_to_cart", "purchase"]
 
-# --- KAFKA CONFIGURATION ---
-# We connect to 'localhost:9092' because that's the port we exposed in Docker
 producer = KafkaProducer(
     bootstrap_servers=['localhost:9092'],
-    value_serializer=lambda v: json.dumps(v).encode('utf-8') # Automatically convert dictionaries to JSON bytes
+    value_serializer=lambda v: json.dumps(v).encode('utf-8')
 )
 TOPIC_NAME = 'ecommerce-events'
 
@@ -44,14 +42,9 @@ if __name__ == "__main__":
     try:
         while True:
             live_event = generate_clickstream_event()
-            
-            # Send data to Kafka instead of just printing it
             producer.send(TOPIC_NAME, value=live_event)
-            
             print(f"📦 Sent to Kafka: {live_event['user_id']} - {live_event['action']} - {live_event['product']}")
-            
             time.sleep(random.uniform(0.2, 1.0))
-            
     except KeyboardInterrupt:
         print("\n🛑 Generator stopped.")
     finally:
