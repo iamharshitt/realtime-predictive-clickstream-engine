@@ -15,6 +15,7 @@ st.title("📊 Live Enterprise Clickstream & ML Inference Command Center")
 st.markdown("This dashboard updates live every 2 seconds by pulling real-time streaming data from our processed SQL database store.")
 
 # Create an empty container that we will continuously clear and redraw
+DB_URI = "postgresql://postgres.tzqnmqmfhnwppzgujrjn:Khushank@2008@aws-1-ap-south-1.pooler.supabase.com:6543/postgres"
 placeholder = st.empty()
 
 def fetch_live_data():

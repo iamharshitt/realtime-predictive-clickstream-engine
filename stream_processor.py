@@ -4,6 +4,7 @@ import requests
 from kafka import KafkaConsumer
 
 # Connect to database
+DB_URI = "postgresql://postgres.tzqnmqmfhnwppzgujrjn:Khushank@2008@aws-1-ap-south-1.pooler.supabase.com:6543/postgres"
 db_conn = sqlite3.connect('analytics.db', isolation_level=None)
 cursor = db_conn.cursor()
 
